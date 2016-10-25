@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { doubleAsync } from '../modules/counter'
+import { doubleAsync, increment } from '../modules/counter'
 import { push } from 'react-router-redux'
 
 /*  This is a container component. Notice it does not contain any JSX,
@@ -14,7 +14,7 @@ import Counter from '../components/Counter'
     implementing our wrapper around increment; the component doesn't care   */
 
 const mapDispatchToProps = {
-  increment : () => push('/'),
+  increment: () => increment(1),
   doubleAsync
 }
 
