@@ -1,11 +1,26 @@
 const express = require('express')
 const debug = require('debug')('app:server')
 const webpack = require('webpack')
+const request = require('request')
 const webpackConfig = require('../build/webpack.config')
 const config = require('../config')
 
 const app = express()
 const paths = config.utils_paths
+
+// TODO: move from here
+const API_URL = 'http://localhost:8000'
+
+// ------------------------------------
+// API PROXY
+// ------------------------------------
+app.use('/api', function (req, res) {
+  const url = API_URL + req.url
+  const response = (req.method === 'POST')
+    ? request.post({ uri: url, json: req.body }) : request(url)
+
+  req.pipe(response).pipe(res)
+})
 
 // This rewrites all routes requests to the root /index.html file
 // (ignoring file requests). If you want to implement universal
