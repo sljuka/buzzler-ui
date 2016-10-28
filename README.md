@@ -2,11 +2,11 @@
 
 Experimental frontend for bizflow-graphql web api.
 
-# Starter kit
+## Starter kit
 
 This project used [react-redux-starter-kit](https://github.com/davezuko/react-redux-starter-kit) as starting project template. Check it out for information about the used front-end technologies.
 
-### Installation
+## Installation
 
 First, clone the project:
 
