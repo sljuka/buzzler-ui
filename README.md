@@ -1,4 +1,4 @@
-# Buzler
+# Buzzler-ui
 
 Experimental frontend for bizflow-graphql web api.
 
@@ -11,8 +11,8 @@ This project used [react-redux-starter-kit](https://github.com/davezuko/react-re
 First, clone the project:
 
 ```bash
-$ git clone https://github.com/sljuka/buzler
-$ cd buzler
+$ git clone https://github.com/sljuka/buzzler-ui
+$ cd buzler-ui
 ```
 
 Then install dependencies and check to see it works
