@@ -21,6 +21,7 @@ Then install dependencies and check to see it works
 $ npm install                   # Install project dependencies
 $ npm start                     # Compile and launch
 ```
+
 If everything works, on localhost:3000 you should see the app's homepage.
 
 While developing, you will probably rely mostly on `npm start`; however, there are additional scripts at your disposal:

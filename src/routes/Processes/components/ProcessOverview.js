@@ -7,7 +7,7 @@ export const ProcessOverview = (props) => {
   return (
     <div>
       <button onClick={fetchProcesses}>fetch</button>
-      <div>
+      <div style={style}>
         {processes.map(process => <Process key={process.name} process={process} />)}
       </div>
     </div>
@@ -21,3 +21,10 @@ ProcessOverview.propTypes = {
 }
 
 export default ProcessOverview
+
+const style = {
+  display: 'flex',
+  flexFlow: 'row wrap',
+  flexDirection: 'row',
+  justifyContent: 'flex-start'
+}
