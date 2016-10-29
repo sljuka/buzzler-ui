@@ -5,14 +5,14 @@ import { mediaQueries } from '../../../styles/global'
 
 const Process = ({ process }) => (
   <div style={style.flexItem}>
-    <div style={style.processItem}>
+    <div>
       <div style={style.header}>
         <div>{process.name}</div>
         <div style={style.subheader}><span>{process.instances.length} open</span></div>
       </div>
       <ul style={style.content}>
         {process.instances.map(instance =>
-          <Instance instance={instance} />
+          <Instance instance={instance} key={instance.id} />
         )}
       </ul>
     </div>
@@ -44,25 +44,24 @@ const style = {
     },
     padding: 10
   },
-  processItem: {},
   header: {
+    backgroundColor: '#f8f8f8',
     border: '1px solid #e5e5e5',
     borderRadius: '3px 3px 0 0',
-    padding: '5px 10px',
-    backgroundColor: '#f8f8f8'
+    padding: '5px 10px'
   },
   subheader: {
-    fontSize: '0.9em',
     color: '#a5a5a5',
+    fontSize: '0.9em',
     textAlign: 'left'
   },
   content: {
-    padding: 0,
     border: '1px solid #e5e5e5',
-    borderTop: '0',
     borderRadius: '0 0 3px 3px',
+    borderTop: '0',
     height: 'auto',
     overflowY: 'auto',
+    padding: 0,
     [small]: {
       height: 500 - 20 - 40
     },

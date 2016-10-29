@@ -24,7 +24,7 @@ export default ProcessOverview
 
 const style = {
   display: 'flex',
-  flexFlow: 'row wrap',
   flexDirection: 'row',
+  flexFlow: 'row wrap',
   justifyContent: 'flex-start'
 }
