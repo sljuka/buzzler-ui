@@ -1,10 +1,20 @@
+import Instance from './instance'
 import Radium from 'radium'
 import React from 'react'
+import { mediaQueries } from '../../../styles/global'
 
 const Process = ({ process }) => (
   <div style={style.flexItem}>
     <div style={style.processItem}>
-      {process.name}
+      <div style={style.header}>
+        <div>{process.name}</div>
+        <div style={style.subheader}><span>{process.instances.length} open</span></div>
+      </div>
+      <ul style={style.content}>
+        {process.instances.map(instance =>
+          <Instance instance={instance} />
+        )}
+      </ul>
     </div>
   </div>
 )
@@ -15,25 +25,52 @@ Process.propTypes = {
 
 export default Radium(Process)
 
+// Styling
+
+const { small, medium, big } = mediaQueries(700, 990)
 const style = {
   flexItem: {
-    '@media (max-width: 600px)': {
+    [small]: {
       flex: '0 0 100%',
       height: 500
     },
-    '@media (min-width: 601px)': {
+    [medium]: {
+      flex: '0 0 50%',
+      height: 300
+    },
+    [big]: {
       flex: '0 0 33.3333%',
-      height: 200
+      height: 300
     },
     padding: 10
   },
-  processItem: {
-    '@media (max-width: 600px)': {
-      height: 500 - 20
+  processItem: {},
+  header: {
+    border: '1px solid #e5e5e5',
+    borderRadius: '3px 3px 0 0',
+    padding: '5px 10px',
+    backgroundColor: '#f8f8f8'
+  },
+  subheader: {
+    fontSize: '0.9em',
+    color: '#a5a5a5',
+    textAlign: 'left'
+  },
+  content: {
+    padding: 0,
+    border: '1px solid #e5e5e5',
+    borderTop: '0',
+    borderRadius: '0 0 3px 3px',
+    height: 'auto',
+    overflowY: 'auto',
+    [small]: {
+      height: 500 - 20 - 40
     },
-    '@media (min-width: 601px)': {
-      height: 200 - 20
+    [medium]: {
+      height: 300 - 20 - 40
     },
-    border: '1px solid'
+    [big]: {
+      height: 300 - 20 - 40
+    }
   }
 }
