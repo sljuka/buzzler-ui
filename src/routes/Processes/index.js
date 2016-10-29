@@ -9,7 +9,7 @@ export default (store) => ({
     require.ensure([], (require) => {
       /*  Webpack - use require callback to define
           dependencies for bundling   */
-      const Processes = require('./containers/ProcessesContainer').default
+      const Processes = require('./containers/ProcessOverviewContainer').default
       const reducer = require('./reducer').default
 
       /*  Add the reducer to the store on key 'counter'  */

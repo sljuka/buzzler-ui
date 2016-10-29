@@ -9,7 +9,13 @@ function mapDispatchToProps (dispatch) {
 }
 
 const mapStateToProps = (state) => ({
-  processes: state.processes.processes
+  processes: presentProcessesInOrder(state)
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProcessOverview)
+
+function presentProcessesInOrder (state) {
+  const { order, processes } = state.processes
+
+  return order.map((name) => processes[name])
+}

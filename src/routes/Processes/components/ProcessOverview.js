@@ -1,5 +1,6 @@
-import Process from './process'
+// import Process from './process'
 import React from 'react'
+import ProcessContainer from '../containers/ProcessContainer'
 
 export const ProcessOverview = (props) => {
   const { processes, fetchProcesses } = props
@@ -8,7 +9,12 @@ export const ProcessOverview = (props) => {
     <div>
       <button onClick={fetchProcesses}>fetch</button>
       <div style={style}>
-        {processes.map(process => <Process key={process.name} process={process} />)}
+        {processes.map(process =>
+          <ProcessContainer
+            key={process.name}
+            process={process}
+          />
+        )}
       </div>
     </div>
   )
