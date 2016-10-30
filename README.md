@@ -38,3 +38,14 @@ While developing, you will probably rely mostly on `npm start`; however, there a
 |`deploy:prod`|Same as `deploy` but overrides `NODE_ENV` to "production".|
 |`lint`|Lint all `.js` files.|
 |`lint:fix`|Lint and fix all `.js` files. [Read more on this](http://eslint.org/docs/user-guide/command-line-interface.html#fix).|
+
+Buzzler-ui features:
+- [x] show processes in a grid
+- [ ] search and fetch process names and display them so user can select them
+- [ ] open/close selected process
+- [x] create process instance
+- [ ] run instance
+- [ ] start/finish instance action
+- [ ] display informative instance data
+- [ ] drag and drop process ordering
+- [ ] graphical display of instance status (finished/remaining actions)
