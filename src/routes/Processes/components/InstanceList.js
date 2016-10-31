@@ -1,4 +1,4 @@
-import InstanceListItem from './instanceListItem'
+import InstanceListItem from './InstanceListItem'
 import Radium from 'radium'
 import React from 'react'
 import { mediaQueries } from '../../../styles/global'

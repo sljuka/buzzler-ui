@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
+import forms from '../reducers/forms'
 
 export const makeRootReducer = (asyncReducers) => {
   return combineReducers({
     routing: routerReducer,
+    forms: forms,
     ...asyncReducers
   })
 }

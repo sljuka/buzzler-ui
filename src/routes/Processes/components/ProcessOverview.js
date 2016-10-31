@@ -1,14 +1,16 @@
-// import Process from './process'
-import React from 'react'
 import ProcessContainer from '../containers/ProcessContainer'
+import React from 'react'
+import SearchContainer from '../containers/SearchContainer'
 
 export const ProcessOverview = (props) => {
-  const { processes, fetchProcesses } = props
+  const {
+    processes
+  } = props
 
   return (
-    <div>
-      <button onClick={fetchProcesses}>fetch</button>
-      <div style={style}>
+    <div style={style.processOverviewRoot}>
+      <SearchContainer />
+      <div style={style.flexGrid}>
         {processes.map(process =>
           <ProcessContainer
             key={process.name}
@@ -21,16 +23,19 @@ export const ProcessOverview = (props) => {
 }
 
 ProcessOverview.propTypes = {
-  fetchProcesses         : React.PropTypes.func.isRequired,
-  processes              : React.PropTypes.array.isRequired,
-  processIdOfNewInstance : React.PropTypes.number
+  processes: React.PropTypes.array.isRequired
 }
 
 export default ProcessOverview
 
 const style = {
-  display: 'flex',
-  flexDirection: 'row',
-  flexFlow: 'row wrap',
-  justifyContent: 'flex-start'
+  flexGrid: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexFlow: 'row wrap',
+    justifyContent: 'flex-start'
+  },
+  processOverviewRoot: {
+    textAlign: 'center'
+  }
 }

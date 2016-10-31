@@ -12,8 +12,8 @@ const Process = (props) =>
 
 Process.propTypes = {
   process: React.PropTypes.object.isRequired,
-  showInstance: React.PropTypes.func.isRequired,
-  showedInstance: React.PropTypes.object
+  showedInstance: React.PropTypes.object,
+  showInstance: React.PropTypes.func.isRequired
 }
 
 export default Radium(Process)

@@ -11,8 +11,7 @@ const ProcessHeader = ({ process }) => (
 )
 
 ProcessHeader.propTypes = {
-  process: React.PropTypes.object.isRequired,
-  showInstance: React.PropTypes.func.isRequired
+  process: React.PropTypes.object.isRequired
 }
 
 export default Radium(ProcessHeader)
