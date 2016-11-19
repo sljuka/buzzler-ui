@@ -18,6 +18,7 @@ const Search = (props) => {
           style={style.input}
           type='text'
           value={searchValue}
+          onFocus={() => onSearchChange(searchValue)}
           onChange={({ target: { value } }) => onSearchChange(value)}
           onKeyDown={e => {
             if (e.keyCode === 27) clearSearchResults()

@@ -43,7 +43,7 @@ While developing, you will probably rely mostly on `npm start`; however, there a
 
 - [ ] authentification
 - [x] show processes in a grid
-- [ ] search and fetch process names and display them so user can select them
+- [x] search and fetch process names and display them so user can select them
 - [x] open/close selected process
 - [ ] create process instance
 - [ ] run instance
