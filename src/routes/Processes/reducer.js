@@ -2,6 +2,7 @@ import { success, start, error } from '../../lib/promiseSufix'
 import {
   CLEAR_SEARCH_RESULTS,
   CLOSE_INSTANCE,
+  CLOSE_PROCESS,
   DEBOUNCE_SEARCH_PROCESSES,
   FETCH_PROCESSES,
   PREPEND_PROCESS,
@@ -50,6 +51,9 @@ export default function processReducer (state = initialState, action) {
     case success(ADD_PROCESS_INSTANCE):
     case error(ADD_PROCESS_INSTANCE):
       return { ...state, addProcessInstancePending: false }
+
+    case CLOSE_PROCESS:
+      return closeProcess(state, action.payload)
   }
 
   return state
@@ -99,6 +103,13 @@ function prependProcess (state, { processName }) {
   const index = newOrder.indexOf(processName)
   if (index !== -1) newOrder.splice(index, 1)
   newOrder.unshift(processName)
+
+  return { ...state, order: newOrder }
+}
+
+function closeProcess (state, { processName }) {
+  const newOrder = state.order
+  newOrder.splice(newOrder.indexOf(processName), 1)
 
   return { ...state, order: newOrder }
 }

@@ -9,6 +9,7 @@ const Process = (props) => {
     addProcessInstance,
     addProcessInstancePending,
     closeInstance,
+    closeProcess,
     process,
     showedInstance,
     showInstance
@@ -19,6 +20,7 @@ const Process = (props) => {
       <ProcessHeader
         addProcessInstance={addProcessInstance}
         addProcessInstancePending={addProcessInstancePending}
+        closeProcess={closeProcess}
         process={process}
       />
       <ProcessContent
@@ -34,7 +36,8 @@ const Process = (props) => {
 Process.propTypes = {
   addProcessInstance: React.PropTypes.func.isRequired,
   addProcessInstancePending: React.PropTypes.bool,
-  closeInstance: React.PropTypes.func,
+  closeInstance: React.PropTypes.func.isRequired,
+  closeProcess: React.PropTypes.func.isRequired,
   process: React.PropTypes.object.isRequired,
   showedInstance: React.PropTypes.object,
   showInstance: React.PropTypes.func.isRequired
@@ -53,11 +56,11 @@ const style = {
     },
     [medium]: {
       flex: '0 0 50%',
-      height: 300
+      height: 320
     },
     [big]: {
       flex: '0 0 33.3333%',
-      height: 300
+      height: 320
     },
     padding: 10
   }

@@ -10,6 +10,7 @@ import {
 export const ADD_PROCESS_INSTANCE = 'ADD_PROCESS_INSTANCE'
 export const CLEAR_SEARCH_RESULTS = 'CLEAR_SEARCH_RESULTS'
 export const CLOSE_INSTANCE = 'CLOSE_INSTANCE'
+export const CLOSE_PROCESS = 'CLOSE_PROCESS'
 export const DEBOUNCE_SEARCH_PROCESSES = 'DEBOUNCE_SEARCH_PROCESSES'
 export const FETCH_PROCESSES = 'FETCH_PROCESSES'
 export const OPEN_PROCESS = 'OPEN_PROCESS'
@@ -107,6 +108,13 @@ export function openProcess (processName) {
         promise: getPromise()
       }
     }
+  }
+}
+
+export function closeProcess (processName) {
+  return {
+    type: CLOSE_PROCESS,
+    payload: { processName }
   }
 }
 

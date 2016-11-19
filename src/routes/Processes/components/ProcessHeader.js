@@ -5,6 +5,7 @@ const ProcessHeader = (props) => {
   const {
     addProcessInstance,
     addProcessInstancePending,
+    closeProcess,
     process
   } = props
 
@@ -13,22 +14,31 @@ const ProcessHeader = (props) => {
       <div style={style.header}>
         <button
           style={style.button}
-          onClick={() => addProcessInstance(process.id, 1)}
-          disabled={addProcessInstancePending}
+          onClick={() => closeProcess(process.name)}
         >
-          +
+          x
         </button>
         <div>{process.name}</div>
-        <div style={style.subheader}><span>{process.instances.length} open</span></div>
+        <div style={style.subheader}>
+          <button
+            style={style.buttonAddInstance}
+            onClick={() => addProcessInstance(process.id, 1)}
+            disabled={addProcessInstancePending}
+          >
+            +
+          </button>
+          <div style={style.openedInstanceCount}><span>{process.instances.length} open</span></div>
+        </div>
       </div>
     </div>
   )
 }
 
 ProcessHeader.propTypes = {
-  process: React.PropTypes.object.isRequired,
   addProcessInstance: React.PropTypes.func.isRequired,
-  addProcessInstancePending: React.PropTypes.bool
+  addProcessInstancePending: React.PropTypes.bool,
+  closeProcess: React.PropTypes.func.isRequired,
+  process: React.PropTypes.object.isRequired
 }
 
 export default Radium(ProcessHeader)
@@ -42,13 +52,21 @@ const style = {
     borderRadius: '3px 3px 0 0',
     padding: '5px 10px'
   },
-  subheader: {
+  openedInstanceCount: {
     color: '#a5a5a5',
     fontSize: '0.9em',
-    textAlign: 'left'
+    textAlign: 'right',
+    marginTop: 5
   },
   button: {
     float: 'right',
     margin: 4
+  },
+  buttonAddInstance: {
+    float: 'left'
+  },
+  subheader: {
+    paddingTop: 15,
+    height: 40
   }
 }

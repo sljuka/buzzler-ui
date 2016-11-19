@@ -1,11 +1,17 @@
 import Process from '../components/Process'
 import { connect } from 'react-redux'
-import { showInstance, closeInstance, addProcessInstance } from '../actions'
+import {
+  showInstance,
+  closeInstance,
+  addProcessInstance,
+  closeProcess
+} from '../actions'
 
 function mapDispatchToProps (dispatch) {
   return {
     addProcessInstance: (processId, userId) => dispatch(addProcessInstance(processId, userId)),
     closeInstance: (processName, id) => dispatch(closeInstance(processName, id)),
+    closeProcess: (processName) => dispatch(closeProcess(processName)),
     showInstance: (processName, id) => dispatch(showInstance(processName, id))
   }
 }
