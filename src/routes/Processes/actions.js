@@ -1,7 +1,11 @@
-import dataQuery from '../../lib/dataQuery'
-import dataMutation from '../../lib/dataMutation'
+import { dataFetch, dataMutation } from '../../lib/dataQuery'
 import timeoutPromise from '../../lib/timeoutPromise'
 import { changeValue } from '../../actions/forms'
+import {
+  addProcessInstanceMutation,
+  processesQuery,
+  searchProcessesQuery
+} from './queries'
 
 export const ADD_PROCESS_INSTANCE = 'ADD_PROCESS_INSTANCE'
 export const CLEAR_SEARCH_RESULTS = 'CLEAR_SEARCH_RESULTS'
@@ -15,70 +19,29 @@ export const SEARCH_PROCESSES = 'SEARCH_PROCESSES'
 export const SELECT_PROCESS = 'SELECT_PROCESS'
 export const SHOW_INSTANCE = 'SHOW_INSTANCE'
 
-const processesQuery = (processNames) => {
-  let queryParams = ''
-  if (processNames && processNames.length > 0) {
-    const stringArray = processNames.map(name => `"${name}"`).join(',')
-    queryParams = `(names: [${stringArray}])`
-  }
-  return (
-`
-{
-  processes${queryParams} {
-    id
-    name
-    description
-    instances {
-      id
-      name
-      additionalInfo
-    }
-  }
-}
-`
-  )
-}
+export function fetchProcesses () {
+  return (dispatch, getState) => {
+    const getPromise = async () => {
+      const query = processesQuery(getState().processes.order)
+      const { processes } = await dataFetch(query)
 
-const searchProcessesQuery = (searchValue) => {
-  let searchPatternParam = ''
-  if (searchValue) {
-    searchPatternParam = `(searchPattern: "${searchValue}")`
-  }
-  return (
-`
-{
-  processes${searchPatternParam} {
-    id
-    name
-    description
-    instances {
-      id
-      name
-      additionalInfo
+      return processes
     }
-  }
-}
-`
-  )
-}
 
-const addProcessInstanceMutation = (processId, userId) => {
-  return (
-`
-mutation {
-  addProcessInstance(processId: ${processId}, userId: ${userId}, additionalInfo: "blabla") {
-    id
+    return dispatch({
+      type: FETCH_PROCESSES,
+      payload: {
+        promise: getPromise()
+      }
+    })
   }
-}
-`
-  )
 }
 
 export function searchProcesses (value) {
   return dispatch => {
     const getPromise = async () => {
       const query = searchProcessesQuery(value)
-      const { processes } = await dataQuery(query)
+      const { processes } = await dataFetch(query)
 
       return processes
     }
@@ -98,7 +61,8 @@ export function addProcessInstance (processId, userId) {
       const mutation = addProcessInstanceMutation(processId, userId)
       const instance = await dataMutation(mutation)
 
-      await timeoutPromise(3000)
+      // wait one more sec
+      await timeoutPromise(1000)
 
       await dispatch(fetchProcesses())
 
@@ -114,10 +78,19 @@ export function addProcessInstance (processId, userId) {
   }
 }
 
-export function prependProcess (processName) {
-  return {
-    type: PREPEND_PROCESS,
-    payload: { processName }
+export function debounceSearchProcesses (value) {
+  return (dispatch, getState) => {
+    dispatch(changeValue('processes', 'search', value))
+
+    clearTimeout(getState().processes.searchDebounceTimer)
+    let newDebouceTimer = null
+    if (value.length > 1)
+      newDebouceTimer = setTimeout(() => dispatch(searchProcesses(value)), 700)
+
+    return dispatch({
+      type: DEBOUNCE_SEARCH_PROCESSES,
+      payload: { debouceTimer: newDebouceTimer }
+    })
   }
 }
 
@@ -134,6 +107,13 @@ export function openProcess (processName) {
         promise: getPromise()
       }
     }
+  }
+}
+
+export function prependProcess (processName) {
+  return {
+    type: PREPEND_PROCESS,
+    payload: { processName }
   }
 }
 
@@ -154,39 +134,5 @@ export function closeInstance (processName, id) {
 export function clearSearchResults () {
   return {
     type: CLEAR_SEARCH_RESULTS
-  }
-}
-
-export function debounceSearchProcesses (value) {
-  return (dispatch, getState) => {
-    dispatch(changeValue('processes', 'search', value))
-
-    clearTimeout(getState().processes.searchDebounceTimer)
-    let newDebouceTimer = null
-    if (value.length > 1)
-      newDebouceTimer = setTimeout(() => dispatch(searchProcesses(value)), 700)
-
-    return dispatch({
-      type: DEBOUNCE_SEARCH_PROCESSES,
-      payload: { debouceTimer: newDebouceTimer }
-    })
-  }
-}
-
-export function fetchProcesses () {
-  return (dispatch, getState) => {
-    const getPromise = async () => {
-      const query = processesQuery(getState().processes.order)
-      const { processes } = await dataQuery(query)
-
-      return processes
-    }
-
-    return dispatch({
-      type: FETCH_PROCESSES,
-      payload: {
-        promise: getPromise()
-      }
-    })
   }
 }

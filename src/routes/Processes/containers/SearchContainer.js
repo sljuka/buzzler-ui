@@ -4,7 +4,7 @@ import { debounceSearchProcesses, clearSearchResults, openProcess } from '../act
 
 function mapDispatchToProps (dispatch) {
   return {
-    onSearchBlur: () => dispatch(clearSearchResults()),
+    clearSearchResults: () => dispatch(clearSearchResults()),
     onSearchChange: (value) => dispatch(debounceSearchProcesses(value)),
     onSearchResultClick: (processName) => dispatch(openProcess(processName))
   }

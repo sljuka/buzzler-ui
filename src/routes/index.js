@@ -8,7 +8,7 @@ import ProcessesRoute from './Processes'
 export const createRoutes = (store) => ({
   path        : '/',
   component   : CoreLayout,
-  indexRoute  : ProcessesRoute,
+  indexRoute  : ProcessesRoute(store),
   childRoutes : [
     ProcessesRoute(store)
   ]
