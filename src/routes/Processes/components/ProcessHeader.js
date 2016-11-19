@@ -13,7 +13,7 @@ const ProcessHeader = (props) => {
     <div>
       <div style={style.header}>
         <button
-          style={style.button}
+          style={style.buttonCloseProcess}
           onClick={() => closeProcess(process.name)}
         >
           x
@@ -58,9 +58,8 @@ const style = {
     textAlign: 'right',
     marginTop: 5
   },
-  button: {
-    float: 'right',
-    margin: 4
+  buttonCloseProcess: {
+    float: 'right'
   },
   buttonAddInstance: {
     float: 'left'
