@@ -3,17 +3,24 @@ import Radium from 'radium'
 import React from 'react'
 import { mediaQueries } from '../../../styles/global'
 
-const InstanceList = ({ process, showInstance }) => (
-  <ul style={style}>
-    {process.instances.map(instance =>
-      <InstanceListItem
-        instance={instance}
-        key={instance.id}
-        showInstance={showInstance}
-      />
-    )}
-  </ul>
-)
+const InstanceList = (props) => {
+  const {
+    process,
+    showInstance
+  } = props
+
+  return (
+    <ul style={style}>
+      {process.instances.map(instance =>
+        <InstanceListItem
+          instance={instance}
+          key={instance.id}
+          showInstance={showInstance}
+        />
+      )}
+    </ul>
+  )
+}
 
 InstanceList.propTypes = {
   process: React.PropTypes.object.isRequired,

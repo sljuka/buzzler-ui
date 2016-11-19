@@ -4,15 +4,15 @@ import { debounceSearchProcesses, clearSearchResults, openProcess } from '../act
 
 function mapDispatchToProps (dispatch) {
   return {
+    onSearchBlur: () => dispatch(clearSearchResults()),
     onSearchChange: (value) => dispatch(debounceSearchProcesses(value)),
-    onSearchResultClick: (processName) => dispatch(openProcess(processName)),
-    onSearchBlur: () => dispatch(clearSearchResults())
+    onSearchResultClick: (processName) => dispatch(openProcess(processName))
   }
 }
 
 const mapStateToProps = (state, ownProps) => ({
-  searchValue: state.forms.processes.search.value,
-  searchResults: state.processes.searchResults
+  searchResults: state.processes.searchResults,
+  searchValue: state.forms.processes.search.value
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search)

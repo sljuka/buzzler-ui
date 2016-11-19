@@ -1,11 +1,18 @@
 import Radium from 'radium'
 import React from 'react'
 
-const InstanceListItem = ({ instance, showInstance }) => (
-  <li style={style} onClick={() => showInstance(instance.name, instance.id)}>
-    #{instance.id}
-  </li>
-)
+const InstanceListItem = (props) => {
+  const {
+    instance,
+    showInstance
+  } = props
+
+  return (
+    <li style={style} onClick={() => showInstance(instance.name, instance.id)}>
+      #{instance.id}
+    </li>
+  )
+}
 
 InstanceListItem.propTypes = {
   instance: React.PropTypes.object.isRequired,

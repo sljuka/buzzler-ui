@@ -1,21 +1,29 @@
 import Radium from 'radium'
 import React from 'react'
 
-const ProcessHeader = ({ process, addProcessInstance, addProcessInstancePending }) => (
-  <div>
-    <div style={style.header}>
-      <button
-        style={style.button}
-        onClick={() => addProcessInstance(process.id, 1)}
-        disabled={addProcessInstancePending}
-      >
-        +
-      </button>
-      <div>{process.name}</div>
-      <div style={style.subheader}><span>{process.instances.length} open</span></div>
+const ProcessHeader = (props) => {
+  const {
+    addProcessInstance,
+    addProcessInstancePending,
+    process
+  } = props
+
+  return (
+    <div>
+      <div style={style.header}>
+        <button
+          style={style.button}
+          onClick={() => addProcessInstance(process.id, 1)}
+          disabled={addProcessInstancePending}
+        >
+          +
+        </button>
+        <div>{process.name}</div>
+        <div style={style.subheader}><span>{process.instances.length} open</span></div>
+      </div>
     </div>
-  </div>
-)
+  )
+}
 
 ProcessHeader.propTypes = {
   process: React.PropTypes.object.isRequired,

@@ -3,12 +3,19 @@ import Radium from 'radium'
 import React from 'react'
 import { mediaQueries } from '../../../styles/global'
 
-const InstanceView = ({ instance, closeInstance }) => (
-  <div style={style}>
-    <InstanceViewHeader instance={instance} closeInstance={closeInstance} />
-    <h1>{instance.name}</h1>
-  </div>
-)
+const InstanceView = (props) => {
+  const {
+    closeInstance,
+    instance
+  } = props
+
+  return (
+    <div style={style}>
+      <InstanceViewHeader instance={instance} closeInstance={closeInstance} />
+      <h1>{instance.name}</h1>
+    </div>
+  )
+}
 
 InstanceView.propTypes = {
   instance: React.PropTypes.object.isRequired,

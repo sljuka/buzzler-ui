@@ -5,10 +5,10 @@ import InstanceList from './InstanceList'
 
 const ProcessContent = (props) => {
   const {
+    closeInstance,
     process,
     showedInstance: instance,
-    showInstance,
-    closeInstance
+    showInstance
   } = props
 
   if (instance)

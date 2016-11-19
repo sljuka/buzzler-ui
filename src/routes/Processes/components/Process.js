@@ -4,19 +4,37 @@ import Radium from 'radium'
 import React from 'react'
 import { mediaQueries } from '../../../styles/global'
 
-const Process = (props) =>
-  <div style={style.flexItem}>
-    <ProcessHeader
-      process={props.process}
-      addProcessInstance={props.addProcessInstance}
-      addProcessInstancePending={props.addProcessInstancePending}
-    />
-    <ProcessContent {...props} />
-  </div>
+const Process = (props) => {
+  const {
+    addProcessInstance,
+    addProcessInstancePending,
+    closeInstance,
+    process,
+    showedInstance,
+    showInstance
+  } = props
+
+  return (
+    <div style={style.flexItem}>
+      <ProcessHeader
+        addProcessInstance={addProcessInstance}
+        addProcessInstancePending={addProcessInstancePending}
+        process={process}
+      />
+      <ProcessContent
+        closeInstance={closeInstance}
+        process={process}
+        showedInstance={showedInstance}
+        showInstance={showInstance}
+      />
+    </div>
+  )
+}
 
 Process.propTypes = {
   addProcessInstance: React.PropTypes.func.isRequired,
   addProcessInstancePending: React.PropTypes.bool,
+  closeInstance: React.PropTypes.func,
   process: React.PropTypes.object.isRequired,
   showedInstance: React.PropTypes.object,
   showInstance: React.PropTypes.func.isRequired
