@@ -1,9 +1,16 @@
 import Radium from 'radium'
 import React from 'react'
 
-const ProcessHeader = ({ process }) => (
+const ProcessHeader = ({ process, addProcessInstance, addProcessInstancePending }) => (
   <div>
     <div style={style.header}>
+      <button
+        style={style.button}
+        onClick={() => addProcessInstance(process.id, 1)}
+        disabled={addProcessInstancePending}
+      >
+        +
+      </button>
       <div>{process.name}</div>
       <div style={style.subheader}><span>{process.instances.length} open</span></div>
     </div>
@@ -11,7 +18,9 @@ const ProcessHeader = ({ process }) => (
 )
 
 ProcessHeader.propTypes = {
-  process: React.PropTypes.object.isRequired
+  process: React.PropTypes.object.isRequired,
+  addProcessInstance: React.PropTypes.func.isRequired,
+  addProcessInstancePending: React.PropTypes.bool
 }
 
 export default Radium(ProcessHeader)
@@ -29,5 +38,9 @@ const style = {
     color: '#a5a5a5',
     fontSize: '0.9em',
     textAlign: 'left'
+  },
+  button: {
+    float: 'right',
+    margin: 4
   }
 }

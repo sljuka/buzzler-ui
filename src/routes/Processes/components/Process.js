@@ -6,11 +6,17 @@ import { mediaQueries } from '../../../styles/global'
 
 const Process = (props) =>
   <div style={style.flexItem}>
-    <ProcessHeader process={props.process} />
+    <ProcessHeader
+      process={props.process}
+      addProcessInstance={props.addProcessInstance}
+      addProcessInstancePending={props.addProcessInstancePending}
+    />
     <ProcessContent {...props} />
   </div>
 
 Process.propTypes = {
+  addProcessInstance: React.PropTypes.func.isRequired,
+  addProcessInstancePending: React.PropTypes.bool,
   process: React.PropTypes.object.isRequired,
   showedInstance: React.PropTypes.object,
   showInstance: React.PropTypes.func.isRequired

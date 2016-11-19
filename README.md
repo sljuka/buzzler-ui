@@ -41,6 +41,7 @@ While developing, you will probably rely mostly on `npm start`; however, there a
 
 ## Buzzler-ui features:
 
+- [ ] authentification
 - [x] show processes in a grid
 - [ ] search and fetch process names and display them so user can select them
 - [ ] open/close selected process

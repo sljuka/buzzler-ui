@@ -1,4 +1,4 @@
-import { success } from '../../lib/promiseSufix'
+import { success, start, error } from '../../lib/promiseSufix'
 import {
   CLEAR_SEARCH_RESULTS,
   CLOSE_INSTANCE,
@@ -6,7 +6,8 @@ import {
   FETCH_PROCESSES,
   PREPEND_PROCESS,
   SEARCH_PROCESSES,
-  SHOW_INSTANCE
+  SHOW_INSTANCE,
+  ADD_PROCESS_INSTANCE
 } from './actions'
 
 const initialState = {
@@ -14,7 +15,8 @@ const initialState = {
   processes: {},
   searchDebounceTimer: null,
   searchResults: [],
-  showedInstances: {}
+  showedInstances: {},
+  addProcessInstancePending: false
 }
 
 export default function processReducer (state = initialState, action) {
@@ -41,6 +43,13 @@ export default function processReducer (state = initialState, action) {
 
     case PREPEND_PROCESS:
       return prependProcess(state, action.payload)
+
+    case start(ADD_PROCESS_INSTANCE):
+      return { ...state, addProcessInstancePending: true }
+
+    case success(ADD_PROCESS_INSTANCE):
+    case error(ADD_PROCESS_INSTANCE):
+      return { ...state, addProcessInstancePending: false }
   }
 
   return state

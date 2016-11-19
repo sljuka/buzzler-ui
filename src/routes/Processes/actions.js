@@ -1,6 +1,9 @@
 import dataQuery from '../../lib/dataQuery'
+import dataMutation from '../../lib/dataMutation'
+import timeoutPromise from '../../lib/timeoutPromise'
 import { changeValue } from '../../actions/forms'
 
+export const ADD_PROCESS_INSTANCE = 'ADD_PROCESS_INSTANCE'
 export const CLEAR_SEARCH_RESULTS = 'CLEAR_SEARCH_RESULTS'
 export const CLOSE_INSTANCE = 'CLOSE_INSTANCE'
 export const DEBOUNCE_SEARCH_PROCESSES = 'DEBOUNCE_SEARCH_PROCESSES'
@@ -59,6 +62,18 @@ const searchProcessesQuery = (searchValue) => {
   )
 }
 
+const addProcessInstanceMutation = (processId, userId) => {
+  return (
+`
+mutation {
+  addProcessInstance(processId: ${processId}, userId: ${userId}, additionalInfo: "blabla") {
+    id
+  }
+}
+`
+  )
+}
+
 export function searchProcesses (value) {
   return dispatch => {
     const getPromise = async () => {
@@ -70,6 +85,28 @@ export function searchProcesses (value) {
 
     return dispatch({
       type: SEARCH_PROCESSES,
+      payload: {
+        promise: getPromise()
+      }
+    })
+  }
+}
+
+export function addProcessInstance (processId, userId) {
+  return dispatch => {
+    const getPromise = async () => {
+      const mutation = addProcessInstanceMutation(processId, userId)
+      const instance = await dataMutation(mutation)
+
+      await timeoutPromise(3000)
+
+      await dispatch(fetchProcesses())
+
+      return instance
+    }
+
+    return dispatch({
+      type: ADD_PROCESS_INSTANCE,
       payload: {
         promise: getPromise()
       }
