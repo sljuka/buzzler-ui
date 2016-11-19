@@ -1,7 +1,8 @@
 import { injectReducer } from '../../store/reducers'
 
 export default (store) => ({
-  path : 'processes',
+  // TODO: when new index route is added uncomment next line
+  // path : 'processes',
   /*  Async getComponent is only invoked when route matches   */
   getComponent (nextState, cb) {
     /*  Webpack - use 'require.ensure' to create a split point
