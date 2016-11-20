@@ -26,8 +26,10 @@ export default Radium(InstanceView)
 
 const { small, medium, big } = mediaQueries(700, 990)
 const style = {
-  border: '1px solid #e5e5e5',
   borderTop: '0',
+  borderRight: '1px solid #e5e5e5',
+  borderBottom: '1px solid #e5e5e5',
+  borderLeft: '1px solid #e5e5e5',
   padding: '5px 10px',
   [small]: {
     height: 500 - 20 - 40

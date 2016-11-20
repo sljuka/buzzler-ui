@@ -33,9 +33,12 @@ export default Radium(InstanceList)
 
 const { small, medium, big } = mediaQueries(700, 990)
 const style = {
-  border: '1px solid #e5e5e5',
+  borderTop: 0,
+  borderRight: '1px solid #e5e5e5',
+  borderBottom: '1px solid #e5e5e5',
+  borderLeft: '1px solid #e5e5e5',
   borderRadius: '0 0 3px 3px',
-  borderTop: '0',
+  // borderTop: '0',
   height: 'auto',
   overflowY: 'auto',
   padding: 0,
