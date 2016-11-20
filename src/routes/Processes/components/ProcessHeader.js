@@ -50,7 +50,8 @@ const style = {
     backgroundColor: '#f8f8f8',
     border: '1px solid #e5e5e5',
     borderRadius: '3px 3px 0 0',
-    padding: '5px 10px'
+    padding: '5px 10px',
+    textAlign: 'center'
   },
   openedInstanceCount: {
     color: '#a5a5a5',

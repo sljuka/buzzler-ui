@@ -1,11 +1,11 @@
 import React from 'react'
 import { StyleRoot } from 'radium'
-import './CoreLayout.scss'
+// import './CoreLayout.scss'
 import '../../styles/core.scss'
 
 export const CoreLayout = ({ children }) => (
   <StyleRoot>
-    <div className='container text-center'>
+    <div className='container'>
       <div className='core-layout__viewport'>
         {children}
       </div>
