@@ -8,6 +8,7 @@ const Search = (props) => {
     clearSearchResults,
     onSearchChange,
     onSearchResultClick,
+    placeholder,
     searchResults,
     searchValue
   } = props
@@ -24,7 +25,7 @@ const Search = (props) => {
           onKeyDown={e => {
             if (e.keyCode === 27) clearSearchResults()
           }}
-          placeholder='Search processes'
+          placeholder={placeholder}
         />
         <SearchResults
           clearSearchResults={clearSearchResults}
@@ -40,6 +41,7 @@ Search.propTypes = {
   clearSearchResults: React.PropTypes.func.isRequired,
   onSearchChange: React.PropTypes.func.isRequired,
   onSearchResultClick: React.PropTypes.func.isRequired,
+  placeholder: React.PropTypes.string,
   searchResults: React.PropTypes.array.isRequired,
   searchValue: React.PropTypes.string
 }

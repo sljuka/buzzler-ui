@@ -9,7 +9,7 @@ export const ProcessOverview = (props) => {
 
   return (
     <div>
-      <SearchContainer />
+      <SearchContainer placeholder={'Search processes'} />
       <div style={style.flexGrid}>
         {processes.map(process =>
           <ProcessContainer
