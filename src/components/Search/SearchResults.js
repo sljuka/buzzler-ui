@@ -1,5 +1,6 @@
 import Radium from 'radium'
 import React from 'react'
+import ReactDOM from 'react-dom'
 import { mediaQueries } from '../../styles/global'
 
 class SearchResults extends React.Component {
@@ -8,6 +9,22 @@ class SearchResults extends React.Component {
     clearSearchResults: React.PropTypes.func.isRequired,
     onSearchResultClick: React.PropTypes.func.isRequired,
     searchResults: React.PropTypes.array.isRequired
+  }
+
+  componentDidMount () {
+    document.getElementById('root').addEventListener('click', this.handleDocumentClick)
+  }
+
+  componentWillUnmount () {
+    document.getElementById('root').removeEventListener('click', this.handleDocumentClick)
+  }
+
+  handleDocumentClick = (evt) => {
+    const { clearSearchResults } = this.props
+    const area = ReactDOM.findDOMNode(this.refs.area)
+
+    if (area && !area.contains(evt.target))
+      clearSearchResults()
   }
 
   render () {
@@ -20,7 +37,7 @@ class SearchResults extends React.Component {
     if (!searchResults || searchResults.length === 0) return null
 
     return (
-      <div style={style.resultContainer}>
+      <div ref='area' style={style.resultContainer}>
         <button style={style.button} onClick={clearSearchResults}>x</button>
         {searchResults.map(item =>
           <div
