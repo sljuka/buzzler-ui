@@ -1,5 +1,6 @@
 import Radium from 'radium'
 import React from 'react'
+import { mediaQueries } from '../../styles/global'
 
 class SearchResults extends React.Component {
 
@@ -35,6 +36,7 @@ class SearchResults extends React.Component {
   }
 }
 
+const { small, medium, big } = mediaQueries(700, 990)
 const style = {
   button: {
     float: 'right'
@@ -42,12 +44,21 @@ const style = {
   resultContainer: {
     backgroundColor: 'rgba(255, 255, 255, 0.5)',
     border: '1px solid #ccc',
-    position: 'absolute'
+    position: 'absolute',
+    [small]: {
+      width: '80%'
+    },
+    [medium]: {
+      width: 270
+    },
+    [big]: {
+      width: 350
+    }
   },
   resultItem: {
     cursor: 'pointer',
     display: 'block',
-    width: 200,
+    padding: '2px 20px',
     ':hover': {
       backgroundColor: 'rgba(248, 248, 248, 0.8)'
     }

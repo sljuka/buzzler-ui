@@ -1,6 +1,7 @@
 import Radium from 'radium'
 import React from 'react'
 import SearchResults from './SearchResults'
+import { mediaQueries } from '../../styles/global'
 
 const Search = (props) => {
   const {
@@ -23,6 +24,7 @@ const Search = (props) => {
           onKeyDown={e => {
             if (e.keyCode === 27) clearSearchResults()
           }}
+          placeholder='Search processes'
         />
         <SearchResults
           clearSearchResults={clearSearchResults}
@@ -44,14 +46,30 @@ Search.propTypes = {
 
 export default Radium(Search)
 
+const { small, medium, big } = mediaQueries(700, 990)
 const style = {
   searchRoot: {
+    [small]: {
+      width: '100%'
+    },
     padding: 10,
-    position: 'relative',
-    width: 100
+    position: 'relative'
   },
   input: {
+    [small]: {
+      width: '100%'
+    },
+    [medium]: {
+      width: 400
+    },
+    [big]: {
+      width: 500
+    },
+    width: 300,
+    padding: 20,
+    fontSize: '1.1em',
     height: 30,
-    width: 400
+    boxShadow: '0 2px 2px 0 rgba(0,0,0,0.16),0 0 0 1px rgba(0,0,0,0.08)',
+    border: 0
   }
 }

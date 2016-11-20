@@ -8,7 +8,7 @@ export const ProcessOverview = (props) => {
   } = props
 
   return (
-    <div style={style.processOverviewRoot}>
+    <div>
       <SearchContainer />
       <div style={style.flexGrid}>
         {processes.map(process =>
@@ -34,8 +34,5 @@ const style = {
     flexDirection: 'row',
     flexFlow: 'row wrap',
     justifyContent: 'flex-start'
-  },
-  processOverviewRoot: {
-    textAlign: 'center'
   }
 }
