@@ -1,7 +1,7 @@
 import InstanceViewHeader from './InstanceViewHeader'
 import Radium from 'radium'
 import React from 'react'
-import { mediaQueries } from '../../../styles/global'
+import { mediaQueries, colors } from '../../../styles/global'
 
 const InstanceView = (props) => {
   const {
@@ -27,17 +27,17 @@ export default Radium(InstanceView)
 const { small, medium, big } = mediaQueries(700, 990)
 const style = {
   borderTop: '0',
-  borderRight: '1px solid #e5e5e5',
-  borderBottom: '1px solid #e5e5e5',
-  borderLeft: '1px solid #e5e5e5',
+  borderRight: `1px solid ${colors.border}`,
+  borderBottom: `1px solid ${colors.border}`,
+  borderLeft: `1px solid ${colors.border}`,
   padding: '5px 10px',
   [small]: {
-    height: 500 - 20 - 40
+    height: 440
   },
   [medium]: {
-    height: 300 - 20 - 40
+    height: 240
   },
   [big]: {
-    height: 300 - 20 - 40
+    height: 240
   }
 }

@@ -3,3 +3,7 @@ export const mediaQueries = (small, mid) => ({
   medium: `@media (min-width: ${small + 1}px) and (max-width: ${mid}px)`,
   big: `@media (min-width: ${mid + 1}px)`
 })
+
+export const colors = {
+  border: '#e5e5e5'
+}
